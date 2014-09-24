@@ -8,19 +8,19 @@ tl;dr
     $ git clone https://github.com/webwurst/smallest-possible-docker-container.git
     $ cd smallest-possible-docker-container
 
-    $ docker run -ti -v (pwd):/gopath/bin google/golang \
+    $ docker run -ti -v $(pwd):/gopath/bin google/golang \
       go get github.com/adriaandejonge/helloworld
 
     $ ldd helloworld
     $ ls helloworld -l
 
-    $ docker run -ti -v (pwd):/gopath/bin -e "CGO_ENABLED=0" google/golang \
+    $ docker run -ti -v $(pwd):/gopath/bin -e "CGO_ENABLED=0" google/golang \
       go get -a github.com/adriaandejonge/helloworld
 
     $ ldd helloworld
     $ ls helloworld -l
 
-    $ docker run -ti -v (pwd):/gopath/bin -e "CGO_ENABLED=0" google/golang \
+    $ docker run -ti -v $(pwd):/gopath/bin -e "CGO_ENABLED=0" google/golang \
       go get -a -ldflags '-s' github.com/adriaandejonge/helloworld
 
     $ ldd helloworld
