@@ -7,6 +7,8 @@ tl;dr
 
     $ git clone https://github.com/webwurst/smallest-possible-docker-container.git
     $ cd smallest-possible-docker-container
+    
+Dynamically linked:
 
     $ docker run -ti -v $(pwd):/gopath/bin google/golang \
       go get github.com/adriaandejonge/helloworld
@@ -14,17 +16,23 @@ tl;dr
     $ ldd helloworld
     $ ls helloworld -l
 
+Statically linked:
+
     $ docker run -ti -v $(pwd):/gopath/bin -e "CGO_ENABLED=0" google/golang \
       go get -a github.com/adriaandejonge/helloworld
 
     $ ldd helloworld
     $ ls helloworld -l
 
+Statically linked without debug information:
+
     $ docker run -ti -v $(pwd):/gopath/bin -e "CGO_ENABLED=0" google/golang \
       go get -a -ldflags '-s' github.com/adriaandejonge/helloworld
 
     $ ldd helloworld
     $ ls helloworld -l
+
+Build Docker image and run in a container:
 
     $ docker build --tag helloworld .
     $ docker images helloworld
